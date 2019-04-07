@@ -1,0 +1,22 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View All Cards</title>
+</head>
+<body>
+<form>
+<table>
+<tr th:each="currentcard : ${cards}" >
+ <td th:text="${currentcard.id}" />
+    <td th:text="${currentcard.name}" />
+    <td th:text="${currentcard.type}" />
+    <td th:text="${currentcard.manacost}" />
+   <td><a th:href="@{/edit/{id}(id=${currentcard.id})}">Edit</a></td>
+    <td><a th:href="@{/delete/{id}(id=${currentcard.id})}">Delete</a></td>
+</tr>
+</table>
+</form>
+<a href="../inputCard">Add a new card</a>
+</body>
+</html>

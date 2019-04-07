@@ -1,0 +1,16 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert New Card</title>
+</head>
+<body>
+ <form th:object="${newCard}" th:action="@{/inputCard}" method='POST'>	
+ Card Name: <input name="name" size="20"> <br />
+ Card Type: <input name="type" size="20"><br />
+ Mana cost: <input name="manacost" size="3"><br />       
+ <input name="submit" type="submit" value="submit" />      
+</form>
+<a href="viewAll">View all Cards</a>
+</body>
+</html>

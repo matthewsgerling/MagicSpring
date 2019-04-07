@@ -1,0 +1,20 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Update Contact</title>
+</head>
+<body>
+<form action="#" th:action="@{/update/{id}(id=${card.id})}" th:object="${cards}" method="post">
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="name">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>    
+    <label for="type">Type</label>
+    <input type="text" th:field="*{type}" id="type" placeholder="type">
+    <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
+    <label for="manacost">Mana Cost</label>
+    <input type="text" th:field="*{manacost}" id="manacost" placeholder="manacost">
+    <span th:if="${#fields.hasErrors('manacost')}" th:errors="*{manacost}"></span>
+    <input type="submit" value="Update User">   
+</form>
+</body>
+</html>
