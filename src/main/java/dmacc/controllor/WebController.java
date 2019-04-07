@@ -45,7 +45,7 @@ public class WebController {
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
 		SpringMagic c = repo.findById((long) id)
 			.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	    model.addAttribute("cards", c);
+	    model.addAttribute("card", c);
 	    return "update";
 	}
 
