@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class SpringMagic {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	private String name;
 	private String type;
 	private int manacost;
@@ -31,11 +31,11 @@ public class SpringMagic {
 	}
 
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

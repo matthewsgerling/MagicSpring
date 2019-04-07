@@ -22,7 +22,7 @@ public class WebController {
 	
 	@GetMapping("/viewAll")
 	public String viewAllContacts(Model model) {
-		model.addAttribute("MagicCards", repo.findAll());
+		model.addAttribute("cards", repo.findAll());
 		return "results";
 	}
 	
@@ -30,34 +30,36 @@ public class WebController {
 	@GetMapping("/inputCard")
 	public String addNewCard(Model model) {
 	    SpringMagic c = new SpringMagic();
-	    model.addAttribute("newCard", c);
+	    model.addAttribute("cards", c);
 	    return "input";
 	}
 	
 	@PostMapping("/inputCard")
 	public String addNewCard(@ModelAttribute SpringMagic c, Model model) {
 		repo.save(c);
-		model.addAttribute("contacts", repo.findAll());
+		model.addAttribute("cards", repo.findAll());
 		return "results";
 	}
 	
 	@GetMapping("/edit/{id}")
 	public String showUpdateForm(@PathVariable("id") int id, Model model) {
-		SpringMagic c = repo.findById((long) id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	    model.addAttribute("MagicCards", c);
+		SpringMagic c = repo.findById((long) id)
+			.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	    model.addAttribute("editcards", c);
 	    return "update";
 	}
 
 	
 	@PostMapping("/update/{id}")
-	public String updateUser(@PathVariable("id") int id, @Valid SpringMagic c, BindingResult result, Model model) {
+	public String updateCard(@PathVariable("id") int id, @Valid SpringMagic c, 
+			BindingResult result, Model model) {
 	    if (result.hasErrors()) {
 	        c.setId(id);
 	        return "update";
 	    }
 	         
 	    repo.save(c);
-	    model.addAttribute("MagicCards", repo.findAll());
+	    model.addAttribute("card", repo.findAll());
 		return "results";
 	}
 	     
@@ -66,7 +68,7 @@ public class WebController {
 		SpringMagic c = repo.findById((long) id)
 	      .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
 	    repo.delete(c);
-	    model.addAttribute("MagicCards", repo.findAll());
+	    model.addAttribute("cards", repo.findAll());
 		return "results";
 	}
 	
